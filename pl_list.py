@@ -7,66 +7,94 @@ __status__ = "Development"\
 import netaddr
 import collections
 
-raw_lines = [line.rstrip('\n') for line in open('TEST_PL_DATA.txt')]
-blackList = ['0.0.0.0/0', 'description', '!']
-split_list = []
-ip_list =[]
-pl_list = []
-pl_dict = collections.defaultdict(list)
-pl_dict_final = {}
-del_list = []
-temp_list = []
-split_list = []
+
 
 def main():
 
-    temp_list = []
+    raw_lines = [line.rstrip('\n') for line in open('TEST_PL_DATA.txt')]
+    blackList = ['!']
+    splitList = []
+    plList = []
+    plDict = collections.defaultdict(list)
+    plDictFinal = {}
+    deleteList = []
+    temporaryList = []
+    plDescription = []
+    plDefaultRoute = []
+    plDescDict = collections.defaultdict(list)
+    plDefaultDict = collections.defaultdict(list)
     
-    for i, line in enumerate(raw_lines):  # IDs DESCRIPTIONS & DEFAULT ROUTES
+    
+    for i, line in enumerate(raw_lines):  # Remove Garbage.  Clean data set
         for j in blackList:
             if j in line:
-                temp_list.append(line)
-
-    for del_lines in temp_list: # CLEARS OUT DESCRIPTIONS & DEFAULT ROUTES
+                temporaryList.append(line)
+    
+    for del_lines in temporaryList: # CLEARS OUT DESCRIPTIONS & DEFAULT ROUTES
         raw_lines.remove(del_lines)
-
+    
     for i, line in enumerate(raw_lines):
-        temp_list = line.split() #SPLITTING LINES INTO LIST
-        split_list.append(temp_list)  #ADDING LIST TO LIST OF LIST
-        temp_list = [] #Reset TEMP List
-
-    for i, line in enumerate(split_list): #Grab PL name and network and place them
-        temp_list.append(line[2]) #in a list of lists for further processing
-        temp_list.append(line[6])
-        pl_list.append(temp_list)
-        temp_list = []
-
-    for key, value in pl_list:  #create pl_dict using the key and network
-        pl_dict[key].append(netaddr.IPNetwork(value))
-
-    for key, value in pl_dict.items():
+        temporaryList = line.split() #SPLITTING LINES INTO LIST
+        splitList.append(temporaryList)  #ADDING LIST TO LIST OF LIST
+        temporaryList = [] #Reset TEMP List
+    
+    for i, line in enumerate(splitList): #Grab PL name and description and place them
+        if line[3] == 'description':    #in a list of lists for further processing
+            temporaryList.append(line[2]) 
+            temporaryList.append(' '.join(line[4::]))
+            plDescription.append(temporaryList)
+            deleteList.append(line)
+        if line [6] == '0.0.0.0/0':
+            temporaryList.append(line[2]) 
+            temporaryList.append(line[6])
+            plDefaultRoute.append(temporaryList)
+            deleteList.append(line)
+        temporaryList = []
+    
+    for del_lines in deleteList: # CLEARS OUT DESCRIPTIONS & DEFAULT ROUTES
+        splitList.remove(del_lines)
+    
+    for i, line in enumerate(splitList): #Grab PL name and network and place them
+        temporaryList.append(line[2]) #in a list of lists for further processing
+        temporaryList.append(line[6])
+        plList.append(temporaryList)
+        temporaryList = []
+    
+    for key, value in plDescription:  #create plDescDict using the key and description string
+        tempString = value
+        plDescDict[key] = tempString
+    
+    for key, value in plList:  #create plDefaultDict using the key and network
+        plDefaultDict[key].append(netaddr.IPNetwork(value))
+        
+    for key, value in plList:  #create plDict using the key and network
+        plDict[key].append(netaddr.IPNetwork(value))
+    
+    for key, value in plDict.items():
         value = netaddr.cidr_merge(value)
         value.sort()
-        pl_dict_final[key] = value
-
+        plDictFinal[key] = value
+    
     target = open('test_output.txt', 'w')
-
-    d = collections.OrderedDict(sorted(pl_dict_final.items()))
-
+    
+    d = collections.OrderedDict(sorted(plDictFinal.items()))
+    
     for key, value in d.items():
         seq_num = 5
-        target.write("ip prefix-list " + str(key) + " description Permit Networks Assigned to the Aviation BU\n")
+        if key in plDescDict:
+            target.write("ip prefix-list " + str(key) + " description " + str(plDescDict[key]) + "\n")
         for i, ip_address in enumerate(value):
             if str(ip_address.netmask) == '255.255.255.255':
                 target.write("ip prefix-list " + str(key) + " seq " + str(seq_num) + " permit " + str(ip_address) + ("\n"))
             else:
                 target.write("ip prefix-list " + str(key) + " seq " + str(seq_num) + " permit " + str(ip_address) + " le 32\n")
             seq_num += 5
-        target.write("ip prefix-list " + str(key) + " seq 500000 deny 0.0.0.0/0 le 32\n")
+        if key in plDefaultDict:
+            target.write("ip prefix-list " + str(key) + " seq 500000 deny 0.0.0.0/0 le 32\n")
         target.write("!\n")
-
+    
     target.close()
-
+    
     print('COMPLETE')
 
 if __name__ == "__main__":
