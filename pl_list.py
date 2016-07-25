@@ -2,8 +2,7 @@ __author__ = "Dan C Williams"
 __version__ = "0.2"
 __date__ = "Jul-24-2016"
 __email__ = "dan.c.williams@gmail.com"
-__status__ = "Development"
-__version__ = "Python 3.5"
+__status__ = "Development"\
 
 import netaddr
 import collections
