@@ -1,8 +1,9 @@
+
 __author__ = "Dan C Williams"
-__version__ = "0.3"
-__date__ = "Jul-25-2016"
+__version__ = "0.4"
+__date__ = "Jul-26-2016"
 __email__ = "dan.c.williams@gmail.com"
-__status__ = "Development"\
+__status__ = "Development"
 
 import netaddr
 import collections
@@ -80,12 +81,9 @@ def main():
     target = open('test_output.txt', 'w')
     
     d = collections.OrderedDict(sorted(plNamesDict.items()))
-
-    print(plDefaultDict)
     
     for key, blank in d.items():
         seq_num = 5
-        print(str(key))
         if key in plDescDict:
             target.write("ip prefix-list " + str(key) + " description " + str(plDescDict[key]) + "\n")
         if key in plDictFinal:
@@ -94,7 +92,7 @@ def main():
                     target.write("ip prefix-list " + str(key) + " seq " + str(seq_num) + " permit " + str(ip_address) + ("\n"))
                 else:
                     target.write("ip prefix-list " + str(key) + " seq " + str(seq_num) + " permit " + str(ip_address) + " le 32\n")
-            seq_num += 5
+                seq_num += 5
         if key in plDefaultDict:
             target.write("ip prefix-list " + str(key) + " seq 500000 deny 0.0.0.0/0 le 32\n")
         target.write("!\n")
