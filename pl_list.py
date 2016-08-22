@@ -11,7 +11,7 @@ import collections
 
 def main():
 
-    raw_lines = [line.rstrip('\n') for line in open('TEST_PL_DATA.txt')]
+    raw_lines = [line.rstrip('\n') for line in open('TEST_PL_DATA.txt') if line[:-1]]
     black_list = ['!']
     split_list = []
     pl_list = []
