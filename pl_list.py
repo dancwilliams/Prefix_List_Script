@@ -1,5 +1,5 @@
 __author__ = "Dan C Williams"
-__version__ = "0.41"
+__version__ = "0.42"
 __date__ = "Jul-27-2016"
 __email__ = "dan.c.williams@gmail.com"
 __status__ = "Development"
