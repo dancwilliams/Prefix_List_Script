@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dancwilliams/Prefix_List_Script.svg?branch=master)](https://travis-ci.org/dancwilliams/Prefix_List_Script)
+
 This script has a few hard coded parts and is basically used for updating some very large prefix lists that exist in an environemnt.
 
 I know the hard coded pices make it custom for my environemnt, but I believe the logic may be reusable.  I am still working on
