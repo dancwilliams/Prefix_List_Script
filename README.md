@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/dancwilliams/Prefix_List_Script.svg?branch=master)](https://travis-ci.org/dancwilliams/Prefix_List_Script)
+[![Build Status](https://travis-ci.org/dancwilliams/Prefix_List_Script.svg?branch=plist_cicd)](https://travis-ci.org/dancwilliams/Prefix_List_Script)
 
 This script has a few hard coded parts and is basically used for updating some very large prefix lists that exist in an environemnt.
 
