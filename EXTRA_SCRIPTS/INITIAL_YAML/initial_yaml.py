@@ -9,6 +9,11 @@ import collections
 import re
 import yaml
 
+class MyDumper(yaml.Dumper):
+
+    def increase_indent(self, flow=False, indentless=False):
+        return super(MyDumper, self).increase_indent(flow, False)
+
 def main():
 
     raw_lines = [line.rstrip('\n') for line in open('CLEAR_TEST_PL_DATA.txt') if line[:-1]]
@@ -71,8 +76,7 @@ def main():
         
     for key, value in pl_list:  #create pl_dict using the key and network
         pl_dict[key].append(netaddr.IPNetwork(value))
-        #pl_dict[key].append(value)
-    
+   
     for key, value in pl_dict.items():
         value = netaddr.cidr_merge(value)
         value.sort()
@@ -85,50 +89,37 @@ def main():
 
     for key, blank in d.items():
         if "ALLOWED" in key:
-            #print(key)
-            m = re.findall('\d:\d{4}', key)
-            if m:
+           m = re.findall('\d:\d{4}', key)
+           if m:
                 vrf = m
-            #print(vrf)
-            yaml_dict['allowed'][vrf[0]] = {}
-            if key in pl_desc_dict:
+           yaml_dict['allowed'][vrf[0]] = {}
+           if key in pl_desc_dict:
                 yaml_dict['allowed'][vrf[0]]['description'] = pl_desc_dict[key]
-            yaml_dict['allowed'][vrf[0]]['prefix'] = {}
-            if key in pl_dict_final:
+           yaml_dict['allowed'][vrf[0]]['prefix'] = {}
+           if key in pl_dict_final:
                 temp_list = []
                 for i, ip_address in enumerate(pl_dict_final[key]):
                     temp_list.append(str(ip_address))
                 yaml_dict['allowed'][vrf[0]]['prefix'] = temp_list
-            d = yaml_dict['allowed'][vrf[0]]['prefix']
-            yaml_dict['allowed'][vrf[0]]['prefix'] = sorted(d)
-            d = yaml_dict['allowed']
-            yaml_dict['allowed'] = collections.OrderedDict(sorted(d.items()))
         if "REMEDIATION" in key:
-            #print(key)
-            m = re.findall('\d:\d{4}', key)
-            if m:
+           m = re.findall('\d:\d{4}', key)
+           if m:
                 vrf = m
-            #print(vrf)
-            yaml_dict['remediation'][vrf[0]] = {}
-            if key in pl_desc_dict:
+           yaml_dict['remediation'][vrf[0]] = {}
+           if key in pl_desc_dict:
                 yaml_dict['remediation'][vrf[0]]['description'] = pl_desc_dict[key]
-            yaml_dict['remediation'][vrf[0]]['prefix'] = {}
-            if key in pl_dict_final:
+           yaml_dict['remediation'][vrf[0]]['prefix'] = {}
+           if key in pl_dict_final:
                 temp_list = []
                 for i, ip_address in enumerate(pl_dict_final[key]):
                     temp_list.append(str(ip_address))
                 yaml_dict['remediation'][vrf[0]]['prefix'] = temp_list
-            d = yaml_dict['remediation'][vrf[0]]['prefix']
-            yaml_dict['remediation'][vrf[0]]['prefix'] = sorted(d)
-            d = yaml_dict['remediation']
-            yaml_dict['remediation'] = collections.OrderedDict(sorted(d.items()))
-    d = yaml_dict
-    yaml_dict = collections.OrderedDict(sorted(d.items()))
-    print(yaml_dict) 
-
+ 
     with open('initial_load.yaml', 'w') as outfile:
-        yaml.dump(yaml_dict, outfile, default_flow_style=False)
-    
+        stream = yaml.dump(yaml_dict, Dumper=MyDumper, default_flow_style=False)
+        outfile.write('---\n')
+        outfile.write(stream)
+
     outfile.close()
 
     print('COMPLETE')
