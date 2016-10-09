@@ -9,3 +9,5 @@ script:
   - cd EXTRA_SCRIPTS/INITIAL_YAML
   - python initial_yaml.py
   - yamllint initial_load.yaml
+  - cd ../../
+  - yamllint *.yaml
