@@ -19,7 +19,8 @@ if grep -q True "run_pl_update"; then
   cd CHG_SCRIPTS
   cp $(ls -1t | head -1) ../EXTRA_SCRIPTS/MANUAL_CREATE/config.yaml
   cd ..
-  python EXTRA_SCRIPTS/MANUAL_CREATE/generate_config.py
+  cd EXTRA_SCRIPTS/MANUAL_CREATE/
+  python generate_config.py
   ret=$?
   if [ $ret -ne 0 ]; then
      #Handle failure
