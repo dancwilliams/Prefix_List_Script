@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -x
 
 
 echo 'Checking for updates to push.'
@@ -29,11 +29,9 @@ if grep -q True "run_pl_update"; then
     cp -Rf $HOME/CHG_SCRIPTS_NEW/* .
     cd ..
     
-    pwd &> /dev/null
-    echo rv: $?
+    pwd
 
-    git status &> /dev/null
-    echo rv: $?
+    git status
     #add, commit and push files
 
     git add -f .
