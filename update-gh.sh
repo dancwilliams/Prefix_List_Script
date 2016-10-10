@@ -23,7 +23,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   #add, commit and push files
   git add -f .
   git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to plist-cicd"
-  git push -fq origin plis_cicd > /dev/null
+  git push -fq origin plist_cicd > /dev/null
 
   echo -e "Done Upldating Github\n"
 fi
