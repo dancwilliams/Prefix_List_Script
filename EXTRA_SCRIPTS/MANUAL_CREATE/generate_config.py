@@ -16,14 +16,14 @@ remediation_dict = yaml_dict['remediation']
 
 # Render template and print generated config to console
 template = ENV.get_template("allowed_template.text")
-print(template.render(config=allowed_dict))
+#print(template.render(config=allowed_dict))
 
 with open(allowed_script, 'w') as outfile:
     temp = template.render(config=allowed_dict)
     outfile.write(temp)
 
 template = ENV.get_template("remediation_template.text")
-print(template.render(config=remediation_dict))
+#print(template.render(config=remediation_dict))
 
 with open(remediation_script, 'w') as outfile:
     temp = template.render(config=remediation_dict)
