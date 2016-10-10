@@ -4,6 +4,10 @@ python:
 install: pip install -r requirements.txt
 script:
 - yamllint pl_changes.yaml
+- mkdir ORIGINAL_BACKUPS
+- mkdir CHG_SCRIPTS
+- mkdir ORIGINAL_BACKUPS_NEW
+- mkdir CHG_SCRIPTS_NEW
 - ./update_pl.sh
 after_success: ./update-gh.sh
 
