@@ -11,6 +11,7 @@ if grep -q True "run_pl_update"; then
     #cp -R ORIGINAL_BACKUPS $HOME/ORIGINAL_BACKUPS_NEWcp -R ORIGINAL_BACKUPS $HOME/ORIGINAL_BACKUPS_NEW
     cp -R CHG_SCRIPTS $HOME/CHG_SCRIPTS_NEW
     cp -R ORIGINAL_BACKUPS $HOME/ORIGINAL_BACKUPS_NEW
+    cp -R ORIGINAL $HOME/ORIGINAL_NEW
 
     #go to home and setup git
     cd $HOME
@@ -22,8 +23,10 @@ if grep -q True "run_pl_update"; then
 
     #go into diractory and copy data we're interested in to that directory
     cd Prefix_List_Script/ORIGINAL_BACKUPS
-    
     cp -Rf $HOME/ORIGINAL_BACKUPS_NEW/* .
+    cd ../../
+    cd Prefix_List_Script/ORIGINAL
+    cp -Rf $HOME/ORIGINAL_NEW/* .
     cd ../../
     cd Prefix_List_Script/CHG_SCRIPTS
     cp -Rf $HOME/CHG_SCRIPTS_NEW/* .
