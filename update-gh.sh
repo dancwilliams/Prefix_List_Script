@@ -20,11 +20,11 @@ if grep -q True "run_pl_update"; then
     git clone --branch=plist_cicd https://${GH_TOKEN}@github.com/dancwilliams/Prefix_List_Script.git #> /dev/null
 
     #go into diractory and copy data we're interested in to that directory
-    cd ORIGINAL_BACKUPS
+    cd Prefix_List_Script/ORIGINAL_BACKUPS
     
     cp -Rf $HOME/ORIGINAL_BACKUPS_NEW/* .
-
-    cd CHG_SCRIPTS
+    cd ../../
+    cd Prefix_List_Script/CHG_SCRIPTS
     cp -Rf $HOME/CHG_SCRIPTS_NEW/* .
   
     #add, commit and push files
@@ -34,5 +34,6 @@ if grep -q True "run_pl_update"; then
 
     echo -e "Done Upldating Github\n"
   fi
+else
+  echo "Finished with check.  No Update"
 fi
-echo 'Finished with check.'
