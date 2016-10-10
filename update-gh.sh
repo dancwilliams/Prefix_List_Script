@@ -4,7 +4,6 @@ set -e
 
 echo 'Checking for updates to push.'
 if grep -q True "run_pl_update"; then
-  if grep -q False "Travis_Build"; then
     echo -e "Starting to update gh\n"
 
     #copy data we're interested in to other place
@@ -30,10 +29,9 @@ if grep -q True "run_pl_update"; then
     #add, commit and push files
     git status >> /dev/null
     git add -f .
-    git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to plist-cicd"
+    git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to plist-cicd [ci skip]"
     git push -fq origin plist_cicd > /dev/null
     echo -e "Done Upldating Github\n"
-  fi
 else
   echo "Finished with check.  No Update"
 fi
