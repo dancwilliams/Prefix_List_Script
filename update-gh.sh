@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+set -e
 
 echo 'Checking for updates to push.'
 if grep -q True "run_pl_update"; then
