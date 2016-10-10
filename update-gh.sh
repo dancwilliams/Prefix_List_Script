@@ -28,7 +28,12 @@ if grep -q True "run_pl_update"; then
     cd Prefix_List_Script/CHG_SCRIPTS
     cp -Rf $HOME/CHG_SCRIPTS_NEW/* .
     cd ..
+    
+    pwd &> /dev/null
+    echo rv: $?
 
+    git status &> /dev/null
+    echo rv: $?
     #add, commit and push files
 
     git add -f .
