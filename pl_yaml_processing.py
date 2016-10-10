@@ -18,8 +18,11 @@ def main():
     output_yaml['remediation'] = {}
     backup_path = 'ORIGINAL_BACKUPS/'
     change_path = 'CHG_SCRIPTS/'
+    original_path = 'ORIGINAL/'
 
-    with open("original.yaml", 'r') as stream:
+    original_file = os.path.join(original_path, 'original.yaml')
+
+    with open(original_file, 'r') as stream:
         try:
             original_yaml = yaml.load(stream)
         except yaml.YAMLError as exc:
@@ -84,7 +87,7 @@ def main():
                 for i, final_vrf in enumerate(remediation_vrfs):
                     output_yaml['remediation'][final_vrf] = original_yaml['remediation'][final_vrf]
     
-    with open('original.yaml', 'w') as outfile:
+    with open(original_file, 'w') as outfile:
         stream = yaml.dump(original_yaml, Dumper=MyDumper, default_flow_style=False)
         outfile.write('---\n')
         outfile.write(stream)
