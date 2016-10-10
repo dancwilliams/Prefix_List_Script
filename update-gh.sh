@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo 'Checking for updates to push.'
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   echo -e "Starting to update gh\n"
