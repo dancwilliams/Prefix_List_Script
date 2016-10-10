@@ -4,7 +4,7 @@ set -e
 
 echo 'Checking for updates to push.'
 if grep -q True "run_pl_update"; then
-  if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+  if [ $TRAVIS_PULL_REQUEST == "false" ]; then
     echo -e "Starting to update gh\n"
 
     #copy data we're interested in to other place
