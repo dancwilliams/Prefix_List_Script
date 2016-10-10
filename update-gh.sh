@@ -1,3 +1,4 @@
+echo 'Checking for updates to push.'
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   echo -e "Starting to update gh\n"
 
@@ -27,3 +28,4 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 
   echo -e "Done Upldating Github\n"
 fi
+echo 'Finished with check.'
