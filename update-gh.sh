@@ -17,9 +17,11 @@ if grep -q True "run_pl_update"; then
     git config --global user.name "Travis"
 
     #using token clone gh-pages branch
-    git clone --quiet --branch=plist_cicd https://${GH_TOKEN}@github.com/dancwilliams/Prefix_List_Script.git > /dev/null
+    git clone --quiet --branch=plist_cicd https://${GH_TOKEN}@github.com/dancwilliams/Prefix_List_Script.git #> /dev/null
+
     #go into diractory and copy data we're interested in to that directory
     cd ORIGINAL_BACKUPS
+    
     cp -Rf $HOME/ORIGINAL_BACKUPS_NEW/* .
 
     cd CHG_SCRIPTS
