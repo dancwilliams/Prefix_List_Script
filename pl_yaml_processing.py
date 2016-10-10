@@ -37,7 +37,7 @@ def main():
     temp_list = change_yaml['change_number']
     change_number = temp_list[0]
 
-    output_file = os.path.join(change_path, change_number + '_' + timestr + '.yaml')
+    output_file = os.path.join(change_path, change_number + '.yaml')
 
     backup_file = os.path.join(backup_path, 'original_pre_' + change_number + '_' + timestr + '.yaml')
 

@@ -130,8 +130,6 @@ allowed:
       - 10.241.0.0/18
       - 10.249.0.0/18
       - 10.249.128.0/18
-      - 12.1.0.0/16
-      - 12.12.0.0/16
   1:1300:
     description: PL_1:1300_ALLOWED_PREFIXES TEST DESCRIPTION
     prefix:
@@ -156,8 +154,6 @@ allowed:
       - 10.220.16.0/22
       - 10.220.80.0/22
       - 10.225.32.0/19
-      - 13.1.0.0/16
-      - 13.13.0.0/16
   1:1400:
     description: PL_1:1400_ALLOWED_PREFIXES TEST DESCRIPTION
     prefix:
@@ -532,8 +528,6 @@ allowed:
       - 10.189.192.0/20
       - 10.220.52.0/22
       - 10.220.116.0/22
-      - 26.1.0.0/16
-      - 26.26.0.0/16
   1:2700:
     description: PL_1:2700_ALLOWED_PREFIXES TEST DESCRIPTION
     prefix: {}
@@ -579,8 +573,6 @@ remediation:
       - 10.181.192.0/20
       - 10.255.17.224/28
       - 10.255.120.0/24
-      - 26.1.0.0/16
-      - 26.26.0.0/16
   1:1300:
     description: PL_1:1300_REMEDIATION_PREFIXES TEST DESCRIPTION
     prefix:
@@ -654,10 +646,6 @@ remediation:
       - 10.167.8.0/22
       - 10.176.0.0/19
       - 10.181.192.0/20
-      - 12.1.0.0/16
-      - 12.12.0.0/16
-      - 26.1.0.0/16
-      - 26.26.0.0/16
   1:1600:
     description: PL_1:1600_REMEDIATION_PREFIXES TEST DESCRIPTION
     prefix:
@@ -691,10 +679,6 @@ remediation:
       - 10.181.192.0/20
       - 10.210.16.0/21
       - 10.230.228.0/22
-      - 12.1.0.0/16
-      - 12.12.0.0/16
-      - 26.1.0.0/16
-      - 26.26.0.0/16
   1:1700:
     description: PL_1:1700_REMEDIATION_PREFIXES TEST DESCRIPTION
     prefix:
@@ -871,10 +855,6 @@ remediation:
       - 10.210.16.0/21
       - 10.210.40.0/21
       - 10.255.124.96/30
-      - 12.1.0.0/16
-      - 12.12.0.0/16
-      - 26.1.0.0/16
-      - 26.26.0.0/16
   1:2200:
     description: PL_1:2200_REMEDIATION_PREFIXES TEST DESCRIPTION
     prefix:
@@ -911,8 +891,6 @@ remediation:
       - 10.167.0.0/21
       - 10.167.8.0/22
       - 10.181.192.0/20
-      - 12.1.0.0/16
-      - 12.12.0.0/16
   1:2700:
     description: PL_1:2700_REMEDIATION_PREFIXES TEST DESCRIPTION
     prefix: {}
