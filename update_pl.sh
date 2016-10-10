@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -x
 
 echo 'Testing run_pl_update'
 
