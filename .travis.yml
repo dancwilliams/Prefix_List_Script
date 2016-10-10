@@ -1,10 +1,12 @@
 language: python
-
 python:
-  - "3.4"
-
-install: "pip install -r requirements.txt"
-
+- '3.4'
+install: pip install -r requirements.txt
 script:
-  - yamllint pl_changes.yaml
-  - ./update_pl.sh
+- yamllint pl_changes.yaml
+- ./update_pl.sh
+after_success: ./update-gh.sh
+
+env:
+  global:
+    secure: I/OvbcPvDkZJM+jHfx9o4VhKQ3ffRZkXyaTFuiHn+vl9jqYnOFbjgWjkMP/NjGjXpXKgRJZ6FYVgh4pMap3TL9vXdEmtemiAKKCIPTTpzV+biKrZBbPmNa/oNAOBzVb9Ht+o93jlY9SjpfI3vZLYF7+/Fu1X0fq2JrUADHwTJxada2fzS++YUTJE0d2iOk/1Fs++EDcCyloF6lO/NlK2hBZ7z6KSnhCsWANgHGzs9vU7+IPJYKp9qtOE/iUKTdwO90Qa2nJlwIOiHXl1iY+Spny9odEoOoAWzLFvlU1a3LyqtESlGCgR34i+JDZRO5BchzB/n1tSJD9xem4rdQE/8GQzDmEODHAw/AaNmEzbY3YhudXYLSCmrEINuRDuw475Z5eTkspWQZw9QUOvjB1nMma4k9QEbakSpW+9ajTki3rqQx91yd/zSfJryI4otCVFTfD3ZdQ71GNUCraB3X6FAgiFg2tpdU1RpeZvBcd2lOoREV2n5M5lLperabH1AhVHYva9Fuj3pX7xIuzNrgICCjJ50duYgNcjnsbRUtbn86jXn+hHAaVwBuQbxvfYSVTyl2t80Qgiy3p6GiyR5M4/xDRE499AtzPcFha5MuEpHVFVLubQ34gZgVjAQR+3XRinoQg9hi9iyMaHWlqgT9gO/vyPm1W183VxM5JVy8KSuHw=

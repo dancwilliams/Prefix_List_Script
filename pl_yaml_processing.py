@@ -17,6 +17,7 @@ def main():
     output_yaml['allowed'] = {}
     output_yaml['remediation'] = {}
     backup_path = 'ORIGINAL_BACKUPS/'
+    change_path = 'CHG_SCRIPTS/'
 
     with open("original.yaml", 'r') as stream:
         try:
@@ -33,7 +34,7 @@ def main():
     temp_list = change_yaml['change_number']
     change_number = temp_list[0]
 
-    output_file = change_number + '.yaml'
+    output_file = os.path.join(change_path, change_number + '_' + timestr + '.yaml')
 
     backup_file = os.path.join(backup_path, 'original_pre_' + change_number + '_' + timestr + '.yaml')
 
@@ -62,10 +63,8 @@ def main():
                 if vrf in remediation_vrfs:
                     remediation_required = True
                     for i, rem_vrf in enumerate(remediation_vrfs):
-                        print('outside if')
                         temp_ip_list = []
                         if vrf != rem_vrf:
-                            print('inside if')
                             temp_list = change_yaml[top_level_key][vrf]
                             for i, ip_address in enumerate(temp_list):
                                 temp_ip_list.append(netaddr.IPNetwork(ip_address))
