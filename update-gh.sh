@@ -25,7 +25,7 @@ if grep -q True "run_pl_update"; then
     cd ../../
     cd Prefix_List_Script/CHG_SCRIPTS
     cp -Rf $HOME/CHG_SCRIPTS_NEW/* .
-    echo 'True' > Prefix_List_Script/Travis_Build
+
     #add, commit and push files
     git status >> /dev/null
     git add -f .
