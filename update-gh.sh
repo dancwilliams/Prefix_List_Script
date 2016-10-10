@@ -2,7 +2,6 @@
 
 set -e
 
-set -o verbose
 
 echo 'Checking for updates to push.'
 if grep -q True "run_pl_update"; then
@@ -33,7 +32,7 @@ if grep -q True "run_pl_update"; then
     #add, commit and push files
 
     git add -f .
-    git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to plist-cicd [ci skip]"
+    git commit -am "Travis build $TRAVIS_BUILD_NUMBER pushed to plist-cicd [ci skip]"
     git push -fq origin plist_cicd > /dev/null
     echo -e "Done Upldating Github\n"
 else
