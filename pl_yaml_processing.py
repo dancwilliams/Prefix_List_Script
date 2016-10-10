@@ -95,6 +95,8 @@ def main():
     with open(output_file, 'w') as outfile:
         stream = yaml.dump(output_yaml, Dumper=MyDumper, default_flow_style=False)
         outfile.write('---\n')
+        outfile.write('change_number:\n')
+        outfile.write('  - ' + change_number + '\n')
         outfile.write(stream)
 
     outfile.close()
