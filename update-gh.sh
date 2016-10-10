@@ -28,6 +28,7 @@ if grep -q True "run_pl_update"; then
     cd ../../
     cd Prefix_List_Script/CHG_SCRIPTS
     cp -Rf $HOME/CHG_SCRIPTS_NEW/* .
+    cd ..
 
     #add, commit and push files
 
