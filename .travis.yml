@@ -6,8 +6,5 @@ python:
 install: "pip install -r requirements.txt"
 
 script:
-  - cd EXTRA_SCRIPTS/INITIAL_YAML
-  - python initial_yaml.py
-  - yamllint initial_load.yaml
-  - cd ../../
-  - yamllint *.yaml
+  - yamllint pl_updates.yaml
+  - ./update_pl.sh
