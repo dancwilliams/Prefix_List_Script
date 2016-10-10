@@ -10,7 +10,7 @@ if grep -q True "run_pl_update"; then
   mkdir CHG_SCRIPTS
   mkdir ORIGINAL_BACKUPS_NEW
   mkdir CHG_SCRIPTS_NEW
-  python pl_yaml_processing.pya
+  python pl_yaml_processing.py
 else
   echo 'No Update'
 fi
