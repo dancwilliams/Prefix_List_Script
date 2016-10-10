@@ -2,7 +2,6 @@
 
 set -x
 
-
 echo 'Checking for updates to push.'
 if grep -q True "run_pl_update"; then
     echo -e "Starting to update gh\n"
@@ -12,6 +11,7 @@ if grep -q True "run_pl_update"; then
     cp -R CHG_SCRIPTS $HOME/CHG_SCRIPTS_NEW
     cp -R ORIGINAL_BACKUPS $HOME/ORIGINAL_BACKUPS_NEW
     cp -R ORIGINAL $HOME/ORIGINAL_NEW
+    cp -R EXTRA_SCRIPTS/MANUAL_CREATE/SCRIPTS $HOME/MANUAL_CONFIGS
 
     #go to home and setup git
     cd $HOME
@@ -27,6 +27,9 @@ if grep -q True "run_pl_update"; then
     cd ../../
     cd Prefix_List_Script/ORIGINAL
     cp -Rf $HOME/ORIGINAL_NEW/* .
+    cd ../../
+    cd Prefix_List_Script/EXTRA_SCRIPTS/MANUAL_CREATE/SCRIPTS
+    cp -Rf $HOME/MANUAL_CONFIGS/* .
     cd ../../
     cd Prefix_List_Script/CHG_SCRIPTS
     cp -Rf $HOME/CHG_SCRIPTS_NEW/* .
