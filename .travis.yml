@@ -6,5 +6,5 @@ python:
 install: "pip install -r requirements.txt"
 
 script:
-  - yamllint pl_updates.yaml
+  - yamllint pl_changes.yaml
   - ./update_pl.sh
