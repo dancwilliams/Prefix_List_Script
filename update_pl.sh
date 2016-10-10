@@ -13,6 +13,7 @@ if grep -q True "run_pl_update"; then
   if [ $ret -ne 0 ]; then
      #Handle failure
      exit 1
+  echo 'False' > Travis_Build
   fi
 else
   echo 'No Update'
