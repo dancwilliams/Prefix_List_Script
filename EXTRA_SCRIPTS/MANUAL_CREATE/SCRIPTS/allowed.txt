@@ -59,7 +59,8 @@ ip prefix-list PL_1:1200_ALLOWED_PREFIXES seq 265 permit 10.241.0.0/18 le 32
 ip prefix-list PL_1:1200_ALLOWED_PREFIXES seq 270 permit 10.249.0.0/18 le 32
 ip prefix-list PL_1:1200_ALLOWED_PREFIXES seq 275 permit 10.249.128.0/18 le 32
 ip prefix-list PL_1:1200_ALLOWED_PREFIXES seq 280 permit 12.1.0.0/16 le 32
-ip prefix-list PL_1:1200_ALLOWED_PREFIXES seq 285 permit 12.12.0.0/16 le 32
+ip prefix-list PL_1:1200_ALLOWED_PREFIXES seq 285 permit 12.2.0.0/18 le 32
+ip prefix-list PL_1:1200_ALLOWED_PREFIXES seq 290 permit 12.12.0.0/16 le 32
 ip prefix-list PL_1:1200_ALLOWED_PREFIXES seq 500000 deny 0.0.0.0/0 le 32 
 
 no ip prefix-list PL_1:1300_ALLOWED_PREFIXES
