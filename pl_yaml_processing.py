@@ -2,6 +2,7 @@ import yaml
 import netaddr
 import os.path
 import time
+import json
 
 class MyDumper(yaml.Dumper):
 
@@ -125,6 +126,9 @@ def main():
         outfile.write('change_number:\n')
         outfile.write('  - ' + change_number + '\n')
         outfile.write(stream)
+    
+    with open('output.json', 'w') as outfile:
+        json.dump(output_yaml, outfile, indent=4)
 
     outfile.close()
     
